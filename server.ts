@@ -501,7 +501,11 @@ registerAppResource(
   { mimeType: RESOURCE_MIME_TYPE },
   async () => {
     try {
-      const htmlPath = path.join(__dirname, "dist", "pr-dashboard.html");
+      // When running from compiled dist/server.js, __dirname is already 'dist'
+      // When running from source server.ts, __dirname is the root
+      const htmlPath = __dirname.endsWith('dist') 
+        ? path.join(__dirname, "pr-dashboard.html")
+        : path.join(__dirname, "dist", "pr-dashboard.html");
       const html = await fs.readFile(htmlPath, "utf-8");
       
       return {

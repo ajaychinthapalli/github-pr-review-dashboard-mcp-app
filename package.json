@@ -15,7 +15,8 @@
     "serve:dev": "npx tsx server.ts",
     "dev": "npm run build && npm run serve",
     "start": "npm run dev",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
