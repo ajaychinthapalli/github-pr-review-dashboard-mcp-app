@@ -15,7 +15,7 @@ A Model Context Protocol (MCP) application that provides an interactive dashboar
 
 ## Requirements
 
-- **Node.js 24.0.0 or higher** - This application requires Node.js version 24 or above
+- **Node.js 18.14.1 or higher** - Recommended: Node.js 20+ or 24+ for best compatibility
 - **GitHub Personal Access Token** - Required for API access
 
 ## Installation
@@ -221,6 +221,26 @@ The application consists of three main components:
 - The application includes CORS support for secure cross-origin requests
 
 ## Troubleshooting
+
+### "TypeError: Class extends value undefined is not a constructor or null"
+
+This error can occur when the Node.js environment doesn't properly expose the `global.Request` API. The application includes a polyfill to handle this automatically. If you still encounter this error:
+
+1. Make sure you're using Node.js 18.14.1 or higher:
+   ```bash
+   node --version
+   ```
+
+2. Rebuild the application to ensure the latest fixes are included:
+   ```bash
+   npm run build
+   npm run serve
+   ```
+
+3. If the issue persists, try running Node.js with experimental features enabled:
+   ```bash
+   node --experimental-global-webcrypto dist/server.js
+   ```
 
 ### "Unknown file extension .ts" error
 
