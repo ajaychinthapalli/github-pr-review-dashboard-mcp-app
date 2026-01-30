@@ -429,7 +429,6 @@ container holding the app. Specify either width or maxWidth, and either height o
           ${i==="approved"?'<span class="badge badge-approved">✓ Approved</span>':""}
           ${i==="changes_requested"?'<span class="badge badge-changes">Changes Requested</span>':""}
           <span class="badge badge-success">✓ CI Passed</span>
-          
         </div>
       </div>
 
@@ -460,9 +459,9 @@ container holding the app. Specify either width or maxWidth, and either height o
 
       ${e.labels.length>0?`
         <div class="labels">
-          ${e.labels.map(r=>`
-            <span class="label" style="background-color: #${r.color}">
-              ${Ko(r.name)}
+          ${e.labels.map(n=>`
+            <span class="label" style="background-color: #${n.color}">
+              ${Ko(n.name)}
             </span>
           `).join("")}
         </div>
@@ -470,10 +469,10 @@ container holding the app. Specify either width or maxWidth, and either height o
 
       ${e.requested_reviewers.length>0?`
         <div class="pr-reviewers">
-          ${e.requested_reviewers.map(r=>`
+          ${e.requested_reviewers.map(n=>`
             <div class="reviewer">
-              <img src="${r.avatar_url}" class="avatar" alt="${r.login}">
-              <span>${r.login}</span>
+              <img src="${n.avatar_url}" class="avatar" alt="${n.login}">
+              <span>${n.login}</span>
             </div>
           `).join("")}
         </div>
