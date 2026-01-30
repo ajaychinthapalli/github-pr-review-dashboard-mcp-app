@@ -5,7 +5,7 @@
   "main": "dist/server.js",
   "type": "module",
   "engines": {
-    "node": ">=24.0.0"
+    "node": ">=18.14.1"
   },
   "scripts": {
     "build": "INPUT=pr-dashboard.html vite build && tsc --project tsconfig.server.json",
