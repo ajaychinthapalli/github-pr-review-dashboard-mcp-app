@@ -211,7 +211,7 @@ The application consists of three main components:
 - **TypeScript** - Type-safe JavaScript
 - **Vite** - Fast build tool and dev server
 - **Octokit** - GitHub REST API client
-- **Node.js 24** - JavaScript runtime
+- **Node.js 18.14.1+** - JavaScript runtime (tested with Node.js 18, 20, and 24)
 
 ## Security
 
@@ -265,9 +265,9 @@ Make sure you have created a `.env` file with your GitHub Personal Access Token.
 Change the PORT in your `.env` file to a different port number.
 
 ### Build errors
-Make sure you're using Node.js 24 or higher:
+Make sure you're using Node.js 18.14.1 or higher:
 ```bash
-node --version  # Should show v24.x.x or higher
+node --version  # Should show v18.14.1 or higher
 ```
 
 ## Contributing

@@ -18,8 +18,14 @@
 // environments it may only be on globalThis. This ensures compatibility.
 if (typeof global.Request === 'undefined' && typeof globalThis.Request !== 'undefined') {
   global.Request = globalThis.Request;
+}
+if (typeof global.Response === 'undefined' && typeof globalThis.Response !== 'undefined') {
   global.Response = globalThis.Response;
+}
+if (typeof global.Headers === 'undefined' && typeof globalThis.Headers !== 'undefined') {
   global.Headers = globalThis.Headers;
+}
+if (typeof global.fetch === 'undefined' && typeof globalThis.fetch !== 'undefined') {
   global.fetch = globalThis.fetch;
 }
 
