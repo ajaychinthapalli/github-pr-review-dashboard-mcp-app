@@ -3,7 +3,8 @@ node_modules/
 package-lock.json
 
 # Build outputs
-dist/
+dist/*.html
+dist/*.js.map
 
 # Environment variables
 .env

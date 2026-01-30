@@ -2,17 +2,21 @@
   "name": "github-pr-review-dashboard-mcp-app",
   "version": "1.0.0",
   "description": "GitHub PR Review Dashboard MCP App",
-  "main": "index.js",
+  "main": "dist/server.js",
   "type": "module",
   "engines": {
     "node": ">=24.0.0"
   },
   "scripts": {
-    "build": "INPUT=pr-dashboard.html vite build",
-    "serve": "npx tsx server.ts",
+    "build": "INPUT=pr-dashboard.html vite build && tsc --project tsconfig.server.json",
+    "build:ui": "INPUT=pr-dashboard.html vite build",
+    "build:server": "tsc --project tsconfig.server.json",
+    "serve": "node dist/server.js",
+    "serve:dev": "npx tsx server.ts",
     "dev": "npm run build && npm run serve",
     "start": "npm run dev",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",

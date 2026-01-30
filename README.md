@@ -47,16 +47,11 @@ A Model Context Protocol (MCP) application that provides an interactive dashboar
 
 ## Usage
 
-### Development Mode
+### Quick Start
 
-Run both build and server in development mode:
-```bash
-npm run dev
-```
+To use the application in production (with MCP clients):
 
-### Production Mode
-
-1. **Build the application**
+1. **Build the application** (compiles TypeScript to JavaScript)
    ```bash
    npm run build
    ```
@@ -67,6 +62,25 @@ npm run dev
    ```
 
 The server will start on `http://localhost:3001` (or the PORT specified in your `.env` file).
+
+### Development Mode
+
+For development with automatic TypeScript execution:
+```bash
+npm run serve:dev
+```
+
+This uses `tsx` to run TypeScript directly without compilation.
+
+### Build Commands
+
+- `npm run build` - Build both UI and server
+- `npm run build:ui` - Build only the dashboard UI  
+- `npm run build:server` - Build only the server (TypeScript to JavaScript)
+- `npm run serve` - Run the compiled server (production)
+- `npm run serve:dev` - Run server directly from TypeScript (development)
+- `npm run dev` - Build and run in production mode
+- `npm run start` - Alias for `npm run dev`
 
 ### Available Endpoints
 
@@ -207,6 +221,22 @@ The application consists of three main components:
 - The application includes CORS support for secure cross-origin requests
 
 ## Troubleshooting
+
+### "Unknown file extension .ts" error
+
+This error occurs when Node.js tries to run TypeScript files directly. The fix:
+
+1. Make sure you've built the application:
+   ```bash
+   npm run build
+   ```
+
+2. Run the compiled server:
+   ```bash
+   npm run serve
+   ```
+
+The application now compiles TypeScript to JavaScript in the `dist/` folder. MCP clients should point to `dist/server.js` instead of `server.ts`.
 
 ### "GITHUB_TOKEN environment variable is required"
 Make sure you have created a `.env` file with your GitHub Personal Access Token.
