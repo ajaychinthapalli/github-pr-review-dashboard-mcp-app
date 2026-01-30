@@ -1,0 +1,41 @@
+{
+  "name": "github-pr-review-dashboard-mcp-app",
+  "version": "1.0.0",
+  "description": "GitHub PR Review Dashboard MCP App",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "INPUT=pr-dashboard.html vite build",
+    "serve": "npx tsx server.ts",
+    "dev": "npm run build && npm run serve",
+    "start": "npm run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajaychinthapalli/github-pr-review-dashboard-mcp-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ajaychinthapalli/github-pr-review-dashboard-mcp-app/issues"
+  },
+  "homepage": "https://github.com/ajaychinthapalli/github-pr-review-dashboard-mcp-app#readme",
+  "dependencies": {
+    "@modelcontextprotocol/ext-apps": "^1.0.1",
+    "@modelcontextprotocol/sdk": "^1.25.3",
+    "@octokit/rest": "^22.0.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.1.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1",
+    "vite-plugin-singlefile": "^2.3.0"
+  }
+}
