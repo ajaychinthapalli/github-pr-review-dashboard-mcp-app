@@ -13,6 +13,16 @@
  * @requires @octokit/rest
  */
 
+// Polyfill for Hono compatibility: ensure global.Request is available
+// @hono/node-server requires global.Request to be defined, but in some Node.js
+// environments it may only be on globalThis. This ensures compatibility.
+if (typeof global.Request === 'undefined' && typeof globalThis.Request !== 'undefined') {
+  global.Request = globalThis.Request;
+  global.Response = globalThis.Response;
+  global.Headers = globalThis.Headers;
+  global.fetch = globalThis.fetch;
+}
+
 // server.ts
 console.log("Starting MCP App server...");
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
