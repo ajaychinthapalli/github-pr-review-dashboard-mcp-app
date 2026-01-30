@@ -1,13 +1,43 @@
+/**
+ * GitHub API Client
+ * 
+ * Wrapper class around Octokit for interacting with the GitHub API.
+ * Provides methods for fetching and managing pull requests.
+ * 
+ * @module utils/api
+ */
+
 import { Octokit } from "@octokit/rest";
 import type { PullRequest, Review, CIStatus, PRFilters } from "../types/github.js";
 
+/**
+ * GitHubAPI Class
+ * 
+ * Handles all interactions with the GitHub REST API for pull request operations.
+ */
 export class GitHubAPI {
   private octokit: Octokit;
 
+  /**
+   * Creates a new GitHubAPI instance
+   * 
+   * @param {string} token - GitHub Personal Access Token for authentication
+   */
   constructor(token: string) {
     this.octokit = new Octokit({ auth: token });
   }
 
+  /**
+   * Get Pull Requests
+   * 
+   * Fetches pull requests from a repository with optional filtering.
+   * Includes reviews and commit counts for each PR.
+   * 
+   * @param {string} owner - Repository owner username or organization
+   * @param {string} repo - Repository name
+   * @param {PRFilters} filters - Optional filters for state, author, reviewer, etc.
+   * @returns {Promise<PullRequest[]>} Array of pull requests with enriched data
+   */
   async getPullRequests(
     owner: string,
     repo: string,
@@ -24,7 +54,7 @@ export class GitHubAPI {
 
     // Fetch additional data for each PR
     const prsWithDetails = await Promise.all(
-      data.map(async (pr) => {
+      data.map(async (pr: any) => {
         const [reviews, commits] = await Promise.all([
           this.getReviews(owner, repo, pr.number),
           this.octokit.pulls.listCommits({
@@ -38,6 +68,11 @@ export class GitHubAPI {
           ...pr,
           reviews,
           commits: commits.data.length,
+          // Ensure all required fields are present with defaults if missing
+          mergeable_state: pr.mergeable_state || "unknown",
+          additions: pr.additions || 0,
+          deletions: pr.deletions || 0,
+          changed_files: pr.changed_files || 0,
         } as PullRequest;
       })
     );

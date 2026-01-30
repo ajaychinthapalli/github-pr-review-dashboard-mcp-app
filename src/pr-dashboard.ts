@@ -1,3 +1,12 @@
+/**
+ * PR Dashboard Client
+ * 
+ * Client-side TypeScript code for the interactive PR dashboard UI.
+ * Handles MCP communication, UI rendering, and user interactions.
+ * 
+ * @module pr-dashboard
+ */
+
 import { App } from "@modelcontextprotocol/ext-apps";
 import type { PullRequest } from "./types/github.js";
 
@@ -75,7 +84,8 @@ function renderDashboard() {
 function createPRCard(pr: PullRequest): string {
   const timeSince = getTimeSince(new Date(pr.created_at));
   const reviewStatus = getReviewStatus(pr);
-  const ciStatus = "success"; // We'll add real CI status later
+  // We'll add real CI status later - for now just showing success
+  const ciStatusBadge = '<span class="badge badge-success">✓ CI Passed</span>';
 
   return `
     <div class="pr-card" data-pr-number="${pr.number}">
@@ -88,8 +98,7 @@ function createPRCard(pr: PullRequest): string {
           ${pr.draft ? '<span class="badge badge-draft">Draft</span>' : ""}
           ${reviewStatus === "approved" ? '<span class="badge badge-approved">✓ Approved</span>' : ""}
           ${reviewStatus === "changes_requested" ? '<span class="badge badge-changes">Changes Requested</span>' : ""}
-          ${ciStatus === "success" ? '<span class="badge badge-success">✓ CI Passed</span>' : ""}
-          ${ciStatus === "failure" ? '<span class="badge badge-failure">✗ CI Failed</span>' : ""}
+          ${ciStatusBadge}
         </div>
       </div>
 

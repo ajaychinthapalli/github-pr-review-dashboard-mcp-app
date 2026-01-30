@@ -4,11 +4,15 @@
   "description": "GitHub PR Review Dashboard MCP App",
   "main": "index.js",
   "type": "module",
+  "engines": {
+    "node": ">=24.0.0"
+  },
   "scripts": {
     "build": "INPUT=pr-dashboard.html vite build",
     "serve": "npx tsx server.ts",
     "dev": "npm run build && npm run serve",
-    "start": "npm run dev"
+    "start": "npm run dev",
+    "typecheck": "tsc --noEmit"
   },
   "repository": {
     "type": "git",
